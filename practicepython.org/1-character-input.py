@@ -20,6 +20,8 @@ Created on Sat Sep 24 19:43:53 2016
 
 import datetime
 
-name = input("Enter your name: ")
-age = input("Enter your age: ")
-print(name + ", you will turn 100 years old in " + 100)
+def main():
+    name = input("Enter your name: ")
+    age = input("Enter your age: ")
+    print(name + ", you will turn 100 years old in " + 100)
+

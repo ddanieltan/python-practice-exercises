@@ -21,10 +21,12 @@
 # and last chars of the string are the same.
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
-  # +++your code here+++
-  return
-
-
+  counter = 0
+  for idx, word in enumerate(words):
+      if len(word)>=2 and word[0]==word[-1]:
+          counter +=1
+  return counter
+ 
 # B. front_x
 # Given a list of strings, return a list with the strings
 # in sorted order, except group all the strings that begin with 'x' first.
@@ -33,10 +35,16 @@ def match_ends(words):
 # Hint: this can be done by making 2 lists and sorting each of them
 # before combining them.
 def front_x(words):
-  # +++your code here+++
-  return
-
-
+  front_list=[]
+  back_list=[]
+  for idx, word in enumerate(words):
+    if word[0]=='x':
+        front_list.append(word)
+    else:
+        back_list.append(word)
+  final_list=sorted(front_list) + sorted(back_list)
+  #sorted returns a new sorted list, leaving the original list unchanged
+  return final_list
 
 # C. sort_last
 # Given a list of non-empty tuples, return a list sorted in increasing
@@ -45,9 +53,10 @@ def front_x(words):
 # [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
-  # +++your code here+++
-  return
-
+  output = sorted(tuples, key=lambda x: x[-1])
+  #lambda allows us to call anonymous functions, which are functions,
+  #where I do not need to pre-define x before running
+  return output
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
