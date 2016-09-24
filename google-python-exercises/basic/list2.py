@@ -12,18 +12,34 @@
 # all adjacent == elements have been reduced to a single element,
 # so [1, 2, 2, 3] returns [1, 2, 3]. You may create a new list or
 # modify the passed in list.
-def remove_adjacent(nums):
-  # +++your code here+++
-  return
 
+# This is my solution which failed the last test
+def remove_adjacent(nums):
+  final_list = []
+  for i,j in zip(nums,nums[1:]):
+    if i != j:
+        final_list.append(i)
+  final_list = final_list + [nums[-1]]
+  return final_list
+  
+# This is Google's much more elegant solution that passes all tests
+def remove_adjacent(nums):
+  result = []
+  for num in nums:
+    if len(result) == 0 or num != result[-1]:
+      result.append(num)
+  return result
 
 # E. Given two lists sorted in increasing order, create and return a merged
 # list of all the elements in sorted order. You may modify the passed in lists.
 # Ideally, the solution should work in "linear" time, making a single
 # pass of both lists.
 def linear_merge(list1, list2):
-  # +++your code here+++
-  return
+  answer = list1 + list2
+  return sorted(answer)
+
+# My answer passes the test, but I seem to 
+# not understood what they meant by "linear" time
 
 # Note: the solution above is kind of cute, but unforunately list.pop(0)
 # is not constant time with the standard python list implementation, so
@@ -42,7 +58,6 @@ def test(got, expected):
   else:
     prefix = '  X '
   print '%s got: %s expected: %s' % (prefix, repr(got), repr(expected))
-
 
 # Calls the above functions with interesting inputs.
 def main():

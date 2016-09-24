@@ -22,7 +22,7 @@
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
   counter = 0
-  for idx, word in enumerate(words):
+  for word in words:
       if len(word)>=2 and word[0]==word[-1]:
           counter +=1
   return counter
