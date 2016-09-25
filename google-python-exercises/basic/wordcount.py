@@ -53,29 +53,24 @@ def file_to_words(filename):
 
 def print_words(filename):
   words = file_to_words(filename)    
-  
-  return
-
-test_words = file_to_words("small.txt")
-
-test_file = open('small.txt','rU')
-test_words = []
-for line in test_file:
-    test_words.append(line.split())
-test_file.close()
+  words_dict = {}
+  for line in words:
+      for word in line:
+          words_dict[word.lower()] = words_dict.get(word.lower(),0) + 1
+  return words_dict
 
 def print_top(filename):
-  return
-# +++your code here+++
-# Define print_words(filename) and print_top(filename) functions.
-# You could write a helper utility function that reads a file
-# and builds and returns a word/count dict for it.
-# Then print_words() and print_top() can just call the utility function.
+  words_dict = print_words(filename)
+  top_twenty = sorted(words_dict,key=words_dict.get,reverse=True)[:20]
+  # Google's solution uses key=get_count
+  return top_twenty
 
-###
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
+
+# Sample terminal syntax:
+# ./wordcount.py --count ./small.txt
 def main():
   if len(sys.argv) != 3:
     print 'usage: ./wordcount.py {--count | --topcount} file'
@@ -84,9 +79,9 @@ def main():
   option = sys.argv[1]
   filename = sys.argv[2]
   if option == '--count':
-    print_words(filename)
+    print print_words(filename)
   elif option == '--topcount':
-    print_top(filename)
+    print print_top(filename)
   elif option == '--ftw':
     print file_to_words(filename)
   else:
