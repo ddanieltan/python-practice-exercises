@@ -16,9 +16,13 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-  # +++your code here+++
-  return
-
+  if len(s)<3:
+      return s
+  else:
+      if s[-3:]=='ing':
+          return s+'ly'
+      else:
+          return s+'ing'
 
 # E. not_bad
 # Given a string, find the first appearance of the
@@ -29,10 +33,13 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-  # +++your code here+++
-  return
-
-
+  if s.find('bad')>s.find('not'): #check if 'bad' comes after 'not' in the string
+      front = s.split('not',1)[0]
+      back = s.split('bad',1)[-1]
+      return front + 'good' + back
+  else:
+      return s
+  
 # F. front_back
 # Consider dividing a string into two halves.
 # If the length is even, the front and back halves are the same length.
@@ -41,8 +48,26 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-  # +++your code here+++
-  return
+  a_front=''
+  a_back=''
+  b_front=''
+  b_back=''
+  a_mid = len(a)/2
+  b_mid = len(b)/2  
+  
+  if len(a)%2==0:
+      a_front = a[:a_mid]
+      a_back = a[a_mid:]
+  else:
+      a_front = a[:a_mid+1]
+      a_back = a[a_mid+1:]
+  if len(b)%2==0:
+      b_front = b[:b_mid]
+      b_back = b[b_mid:]
+  else:
+      b_front = b[:b_mid+1]
+      b_back = b[b_mid+1:]
+  return a_front + b_front + a_back + b_back
 
 
 # Simple provided test() function used in main() to print
