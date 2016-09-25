@@ -39,6 +39,33 @@ print_words() and print_top().
 
 import sys
 
+def file_to_words(filename):
+  words = []    
+  f = open(filename,'rU') 
+  #The special mode 'rU' is the "Universal" option for text files 
+  #where it's smart about converting different line-endings 
+  #so they always come through as a simple '\n'
+  for line in f:
+      one_line = line.split()
+      words.append(one_line)
+  f.close()
+  return words
+
+def print_words(filename):
+  words = file_to_words(filename)    
+  
+  return
+
+test_words = file_to_words("small.txt")
+
+test_file = open('small.txt','rU')
+test_words = []
+for line in test_file:
+    test_words.append(line.split())
+test_file.close()
+
+def print_top(filename):
+  return
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
@@ -60,6 +87,8 @@ def main():
     print_words(filename)
   elif option == '--topcount':
     print_top(filename)
+  elif option == '--ftw':
+    print file_to_words(filename)
   else:
     print 'unknown option: ' + option
     sys.exit(1)
