@@ -34,35 +34,70 @@ Suggested milestones for incremental development:
  -Fix main() to use the extract_names list
 """
 
+def read_html(filename):
+  f = open(filename,'r')
+  raw_text = f.read()
+  f.close()
+  return raw_text
+
 def extract_names(filename):
   """
   Given a file name for baby.html, returns a list starting with the year string
   followed by the name-rank strings in alphabetical order.
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
-  # +++your code here+++
-  return
+  raw_text = read_html(filename)  
+  
+  #searching for the year
+  year = re.search('(<h3 align="center">Popularity in )(\d\d\d\d)',raw_text).group(2)
+  
+  #searching for the list of names
+  list_of_names = re.findall('<td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>',raw_text)
+  
+  #pair each name with it's rank
+  name_and_rank = []  
+  for line in list_of_names:
+    name_and_rank.append((line[1], line[0]))
+    name_and_rank.append((line[2], line[0]))
+  
+  # sort the list alphabetically
+  name_and_rank = sorted(name_and_rank, key = lambda x:x[0])
 
+  return year, name_and_rank
+
+
+#a=extract_names('baby1990.html')
+#a[1][0]
+
+
+def write_summary(filename):
+  
+  return 
 
 def main():
   # This command-line parsing code is provided.
   # Make a list of command line arguments, omitting the [0] element
   # which is the script itself.
-  args = sys.argv[1:]
 
-  if not args:
+  if len(sys.argv) != 3:
     print 'usage: [--summaryfile] file [file ...]'
-    sys.exit(1)
-
+    sys.exit(1)  
+  
+  option = sys.argv[1]
+  filename = sys.argv[2]
+  
   # Notice the summary flag and remove it from args if it is present.
   summary = False
-  if args[0] == '--summaryfile':
+  if option == '--summaryfile':
     summary = True
-    del args[0]
+    del option
 
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
+  
+  if option == '--print':
+    print extract_names(filename)
   
 if __name__ == '__main__':
   main()
