@@ -62,17 +62,31 @@ def extract_names(filename):
   
   # sort the list alphabetically
   name_and_rank = sorted(name_and_rank, key = lambda x:x[0])
+  name_and_rank = dict(name_and_rank)
 
   return year, name_and_rank
 
-
+### testing
 #a=extract_names('baby1990.html')
-#a[1][0]
+#b=a[1]
+#dicti = {'a':1,'b':2}
+#for k,v in dicti.items():
+#    print k,v
 
 
 def write_summary(filename):
+  extracted_object = extract_names(filename)
+  year = extracted_object[0]
+  ranked_names = extracted_object[1]
   
-  return 
+  new_name = '{}-summary.txt'.format(year)
+  f = open(new_name,'w')
+  for k,v in ranked_names.items():
+    line = '{} {}\n'.format(k,v)    
+    f.write(line)
+  f.close()
+      
+  return '{}-summary.txt successfully written'.format(new_name)
 
 def main():
   # This command-line parsing code is provided.
@@ -80,17 +94,14 @@ def main():
   # which is the script itself.
 
   if len(sys.argv) != 3:
-    print 'usage: [--summaryfile] file [file ...]'
+    print 'usage: babynames.py {--summary | --print} filename'
     sys.exit(1)  
   
   option = sys.argv[1]
   filename = sys.argv[2]
   
-  # Notice the summary flag and remove it from args if it is present.
-  summary = False
-  if option == '--summaryfile':
-    summary = True
-    del option
+  if option == '--summary':
+    print write_summary(filename)
 
   # +++your code here+++
   # For each filename, get the names, then either print the text output
