@@ -64,11 +64,12 @@ def extract_names(filename):
   name_and_rank = sorted(name_and_rank, key = lambda x:x[0])
   name_and_rank = dict(name_and_rank)
 
-  return year, name_and_rank
+  return year, name_and_rank[:20]
 
 ### testing
-#a=extract_names('baby1990.html')
+#a=extract_names('/Desktop/github/python-practice-exercises/google-python-exercises/babynames/baby1990.html')
 #b=a[1]
+#b[:20]
 #dicti = {'a':1,'b':2}
 #for k,v in dicti.items():
 #    print k,v
