@@ -9,9 +9,13 @@ import os
 
 #dir(os)
 
-def List(dir):
-  filenames = os.listdir(dir)
-  print filenames
+def list_directory(dir1):
+  filenames = os.listdir(dir1)
+  return filenames
   
 def main():
-  List(sys.argv(2))
+  print list_directory(sys.argv[1])
+
+if __name__ == '__main__':
+  main()
+  
