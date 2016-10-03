@@ -18,7 +18,7 @@ import commands
 # +++your code here+++
 # Write functions and modify main() to call them
 
-
+# filename is special if it comes in the form of __word__
 
 def main():
   # This basic command line argument parsing code is provided.
@@ -44,12 +44,15 @@ def main():
     tozip = args[1]
     del args[0:2]
 
+  if args[0] == '--dir':
+    dirname = args[1]
+    del args[0:2]
+
   if len(args) == 0:
     print "error: must specify one or more dirs"
     sys.exit(1)
 
-  # +++your code here+++
-  # Call your functions
+  
   
 if __name__ == "__main__":
   main()
