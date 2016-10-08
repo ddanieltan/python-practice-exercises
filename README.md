@@ -5,3 +5,4 @@ A collection of Python practice exercises
 * The directory __google-python-exercises__ contain Python exercises taken from [Google's Python Class](https://developers.google.com/edu/python/exercises/basic).
 * The directory __hard-way__ contain Python exercises taken from [Learn Python The Hard Way](https://learnpythonthehardway.org/book/).
 * The directory __numpy_100__ contain Python exercises taken from [100 Numpy Exercises](https://github.com/rougier/numpy-100).
+* The directory __pandas_exercises__ contain Python exercises taken from [Guipsamora's collection of Pandas exercises](https://github.com/guipsamora/pandas_exercises).
